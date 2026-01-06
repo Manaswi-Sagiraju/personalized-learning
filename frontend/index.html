@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Personalized Learning Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">LearnAI</h1>
+                <div class="nav-links">
+                    <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                    <a href="#" onclick="showPage('courses')">Courses</a>
+                    <a href="#" onclick="showPage('recommendations')">Recommendations</a>
+                    <a href="#" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Login Page -->
+        <div id="login-page" class="page active">
+            <div class="auth-container">
+                <h2>Welcome to LearnAI</h2>
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchAuthTab('login')">Login</button>
+                    <button class="tab-btn" onclick="switchAuthTab('signup')">Sign Up</button>
+                </div>
+                
+                <div id="login-form" class="auth-form active">
+                    <input type="text" id="login-username" placeholder="Username" required onkeypress="if(event.key==='Enter') handleLogin()">
+                    <input type="password" id="login-password" placeholder="Password" required onkeypress="if(event.key==='Enter') handleLogin()">
+                    <button onclick="handleLogin()" id="login-btn">Login</button>
+                    <div id="login-error" class="error-message"></div>
+                    <div id="login-loading" class="loading" style="display: none;">Logging in...</div>
+                </div>
+                
+                <div id="signup-form" class="auth-form">
+                    <input type="text" id="signup-username" placeholder="Username" required onkeypress="if(event.key==='Enter') handleSignup()">
+                    <input type="email" id="signup-email" placeholder="Email" required onkeypress="if(event.key==='Enter') handleSignup()">
+                    <input type="password" id="signup-password" placeholder="Password" required onkeypress="if(event.key==='Enter') handleSignup()">
+                    <input type="text" id="signup-fullname" placeholder="Full Name (optional)" onkeypress="if(event.key==='Enter') handleSignup()">
+                    <button onclick="handleSignup()" id="signup-btn">Sign Up</button>
+                    <div id="signup-error" class="error-message"></div>
+                    <div id="signup-loading" class="loading" style="display: none;">Creating account...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page">
+            <div class="container">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Completion Rate</h3>
+                        <p id="completion-rate" class="stat-value">0%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Average Score</h3>
+                        <p id="average-score" class="stat-value">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Topics Completed</h3>
+                        <p id="topics-completed" class="stat-value">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Topics</h3>
+                        <p id="total-topics" class="stat-value">0</p>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Progress Over Time</h3>
+                    <div id="progress-chart"></div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Topic Performance</h3>
+                    <div id="topic-performance-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Courses Page -->
+        <div id="courses-page" class="page">
+            <div class="container">
+                <h2>Courses</h2>
+                <div id="courses-list"></div>
+            </div>
+        </div>
+
+        <!-- Course Detail Page -->
+        <div id="course-detail-page" class="page">
+            <div class="container">
+                <button onclick="showPage('courses')" class="back-btn">← Back to Courses</button>
+                <div id="course-detail"></div>
+            </div>
+        </div>
+
+        <!-- Topic Detail Page -->
+        <div id="topic-detail-page" class="page">
+            <div class="container">
+                <button onclick="showPage('courses')" class="back-btn">← Back to Courses</button>
+                <div id="topic-detail"></div>
+            </div>
+        </div>
+
+        <!-- Quiz Page -->
+        <div id="quiz-page" class="page">
+            <div class="container">
+                <h2 id="quiz-title"></h2>
+                <div id="quiz-questions"></div>
+                <button onclick="submitQuiz()" class="submit-btn">Submit Quiz</button>
+                <div id="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- Recommendations Page -->
+        <div id="recommendations-page" class="page">
+            <div class="container">
+                <h2>Personalized Recommendations</h2>
+                
+                <div class="recommendation-section">
+                    <h3>Recommended Topics</h3>
+                    <div id="topic-recommendations"></div>
+                </div>
+                
+                <div class="recommendation-section">
+                    <h3>Knowledge Gaps</h3>
+                    <div id="knowledge-gaps"></div>
+                </div>
+                
+                <div class="recommendation-section">
+                    <h3>Adaptive Learning Path</h3>
+                    <div id="adaptive-path"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
